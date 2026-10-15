@@ -15,6 +15,7 @@ Check "Category filter present" ($html -match 'id="category"')
 Check "Shopping cart present" ($html -match 'id="cart-items"')
 Check "Place order function present" ($html -match 'function placeOrder')
 Check "Order tracking function present" ($html -match 'function trackOrder')
+Check "Customer rating summary present" ($html -match 'id="rating-summary"')
 
 if ($script:fail -gt 0) { Write-Host "$($script:fail) content test(s) FAILED"; exit 1 }
 Write-Host "All content tests passed"

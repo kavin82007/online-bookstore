@@ -29,6 +29,7 @@
     .panel li { list-style: none; font-size: 14px; padding: 4px 0; border-bottom: 1px dashed #eee; }
     .msg { margin-top: 10px; font-size: 14px; color: #27ae60; font-weight: bold; }
     .track input { width: 100%; padding: 8px; margin: 8px 0; border: 1px solid #ccc; border-radius: 6px; }
+    .stars { color: #f1c40f; font-size: 18px; }
     footer { text-align: center; padding: 15px; background: #6b3e26; color: #fff; margin-top: 20px; }
   </style>
 </head>
@@ -37,7 +38,7 @@
 <header>
   <h1>Online Bookstore</h1>
   <p>Browse, search, order and track your books</p>
-  <span class="version">Version 1.0 - Stable</span>
+  <span class="version">Version 2.0 - Ratings &amp; Thank-You</span>
 </header>
 
 <div class="wrap">
@@ -102,11 +103,25 @@
       <button onclick="placeOrder()">Place Order</button>
       <div id="order-msg" class="msg"></div>
     </div>
+
     <div class="panel track">
       <h2>Track Order</h2>
       <input id="track-id" type="text" placeholder="Enter Order ID (e.g. BK123456)">
       <button onclick="trackOrder()">Track</button>
       <div id="track-msg" class="msg"></div>
+    </div>
+
+    <div class="panel" id="rating-summary">
+      <h2>Customer Rating Summary</h2>
+      <p><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9734;</span> <b>4.3 / 5</b> from 1,248 reviews</p>
+      <ul>
+        <li>5 stars - 58%</li>
+        <li>4 stars - 24%</li>
+        <li>3 stars - 11%</li>
+        <li>2 stars - 4%</li>
+        <li>1 star - 3%</li>
+      </ul>
+      <p style="margin-top:8px;font-size:13px">Top rated: <b>Cloud Native DevOps</b> (4.8 / 5)</p>
     </div>
   </aside>
 </div>
@@ -147,7 +162,7 @@
     const id = "BK" + Date.now().toString().slice(-6);
     orders[id] = 0;
     msg.style.color = "#27ae60";
-    msg.textContent = "Order placed! Your Order ID: " + id;
+    msg.textContent = "Thank you for shopping with us! Your order is confirmed. Order ID: " + id;
     cart.length = 0; renderCart();
     const timer = setInterval(() => {
       if (orders[id] < STAGES.length - 1) orders[id]++; else clearInterval(timer);
